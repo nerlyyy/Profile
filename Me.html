@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Idris - Profil Personal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #0f172a; /* Slate 900 */
+            color: #f8fafc; /* Slate 50 */
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Gradient */
+        .bg-animated {
+            background: linear-gradient(120deg, #0f172a, #1e1b4b, #0f172a);
+            background-size: 200% 200%;
+            animation: gradientMove 15s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glassmorphism utility */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Navbar - Glass Header */
+        .navbar {
+            background: rgba(15, 23, 42, 0.95);
+            border-bottom: 2px solid rgba(56, 189, 248, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Typewriter effect cursor */
+        .cursor-blink {
+            display: inline-block;
+            width: 3px;
+            height: 1.2em;
+            background-color: #38bdf8; /* Sky 400 */
+            vertical-align: text-bottom;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569; 
+        }
+
+        html {
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+        
+        /* Slide Section Styling */
+        .slide-section {
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            min-height: 100vh;
+        }
+
+        /* Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+        .delay-400 { transition-delay: 400ms; }
+
+        /* Button Ripple Effects */
+        .btn-click {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-click::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-click:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Card Hover Lift Effect */
+        .card-lift {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .card-lift:hover {
+            transform: translateY(-8px);
+        }
+
+        /* Glow effect */
+        .glow-on-hover {
+            transition: all 0.3s ease;
+        }
+
+        .glow-on-hover:hover {
+            filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.5));
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.98);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 50;
+            overflow-y: auto;
+            transition: transform 0.3s ease-in-out;
+            display: none;
+        }
+
+        .mobile-menu-fixed.show {
+            display: block;
+        }
+
+        /* Modal Solid Background */
+        .modal-solid {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="bg-animated selection:bg-sky-500 selection:text-white relative">
+
+    <nav class="navbar w-full transition-all duration-300 sticky top-0 z-40" id="navbar">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer hover:scale-105 transition-transform btn-click" onclick="playClickSound()">
+                    <span class="text-sky-400 font-bold text-xl">&lt;</span>
+                    <span class="font-bold text-xl tracking-wider">Idris</span>
+                    <span class="text-sky-400 font-bold text-xl">/&gt;</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-6">
+                        <a href="#about" class="hover:text-sky-400 transition-colors px-3 py-2 rounded-md text-sm font-medium btn-click" onclick="playClickSound()">Tentang</a>
+                        <a href="#skills" class="hover:text-sky-400 transition-colors px-3 py-2 rounded-md text-sm font-medium btn-click" onclick="playClickSound()">Minat & Bakat</a>
+                        <a href="#projects" class="hover:text-sky-400 transition-colors px-3 py-2 rounded-md text-sm font-medium btn-click" onclick="playClickSound()">Karya</a>
+                        <a href="#music" class="hover:text-sky-400 transition-colors px-3 py-2 rounded-md text-sm font-medium btn-click" onclick="playClickSound()">Musik</a>
+                        <a href="#faq" class="hover:text-sky-400 transition-colors px-3 py-2 rounded-md text-sm font-medium btn-click" onclick="playClickSound()">FAQ</a>
+                        <a href="#feedback" class="hover:text-sky-400 transition-colors px-3 py-2 rounded-md text-sm font-medium btn-click" onclick="playClickSound()">Feedback</a>
+                    </div>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" id="mobile-menu-btn" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-white/10 focus:outline-none btn-click" onclick="playClickSound()">
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu - Overlay Sidebar -->
+    <div class="mobile-menu-fixed" id="mobile-menu">
+        <div class="px-2 pt-20 pb-3 space-y-1 sm:px-3 text-center">
+            <a href="#about" class="hover:text-sky-400 block px-3 py-2 rounded-md text-base font-medium btn-click" onclick="closeMobileMenu(); playClickSound()">Tentang</a>
+            <a href="#skills" class="hover:text-sky-400 block px-3 py-2 rounded-md text-base font-medium btn-click" onclick="closeMobileMenu(); playClickSound()">Minat & Bakat</a>
+            <a href="#projects" class="hover:text-sky-400 block px-3 py-2 rounded-md text-base font-medium btn-click" onclick="closeMobileMenu(); playClickSound()">Karya</a>
+            <a href="#music" class="hover:text-sky-400 block px-3 py-2 rounded-md text-base font-medium btn-click" onclick="closeMobileMenu(); playClickSound()">Musik</a>
+            <a href="#faq" class="hover:text-sky-400 block px-3 py-2 rounded-md text-base font-medium btn-click" onclick="closeMobileMenu(); playClickSound()">FAQ</a>
+            <a href="#feedback" class="hover:text-sky-400 block px-3 py-2 rounded-md text-base font-medium btn-click" onclick="closeMobileMenu(); playClickSound()">Feedback</a>
+        </div>
+    </div>
+
+    <main id="about" class="slide-section flex flex-col justify-center w-full pt-16 pb-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="text-center lg:text-left flex flex-col lg:flex-row items-center gap-12">
+                
+                <!-- Profile Left Side -->
+                <div class="lg:w-1/2 space-y-8 z-10 reveal">
+                    <div class="flex flex-col items-center lg:items-start gap-3 mb-4">
+                        <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-panel text-sm text-sky-300 font-medium hover:bg-white/10 transition-all btn-click" onclick="playClickSound()">
+                            <img src="https://iili.io/CZe74lj.png" onerror="this.onerror=null; this.src='https://iili.io/CZe74lj.jpg';" alt="Logo SMPN 24 Depok" class="w-8 h-8 object-contain drop-shadow-lg">
+                            <span>Siswa SMPN 24 Depok</span>
+                        </div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-panel bg-white/5 border-white/10 text-xs text-sky-100 font-medium lg:ml-6 opacity-90 reveal delay-100">
+                            <img src="https://iili.io/CZegHOl.png" onerror="this.onerror=null; this.src='https://iili.io/CZegHOl.jpg';" alt="Logo IT Club" class="w-5 h-5 object-contain drop-shadow-lg">
+                            <span>Anggota IT Club</span>
+                        </div>
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight reveal delay-100">
+                        Halo, Saya <br/>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-indigo-400 animate-pulse">Muhammad Idris</span>
+                    </h1>
+                    
+                    <div class="text-xl sm:text-2xl text-slate-300 font-light reveal delay-200">
+                        Saya seorang <span id="typewriter-text" class="font-semibold text-white"></span><span class="cursor-blink"></span>
+                    </div>
+                    
+                    <p class="text-base text-slate-400 max-w-lg mx-auto lg:mx-0 leading-relaxed reveal delay-300">
+                        Siswa Kelas 9A yang memiliki ketertarikan mendalam pada dunia literasi, logika, dan teknologi. Menyeimbangkan waktu antara merangkai kata dalam novel, memecahkan kode Python, dan mengasah kemampuan analitis.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4 reveal delay-400">
+                        <a href="#skills" class="px-8 py-3 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-900 font-bold transition-all duration-300 transform hover:scale-105 shadow-[0_0_15px_rgba(56,189,248,0.5)] btn-click" onclick="playClickSound()">
+                            Jelajahi Profil
+                        </a>
+                        <button onclick="openContactModal(); playClickSound();" class="px-8 py-3 rounded-lg glass-panel hover:bg-white/10 text-white font-medium transition-all duration-300 flex items-center justify-center group btn-click">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-400 group-hover:text-white transition-colors mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            Hubungi Saya
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Profile Right Side: Avatar & Quote directly underneath -->
+                <div class="lg:w-1/2 relative flex flex-col items-center mt-8 lg:mt-0 reveal delay-200">
+                    <div class="absolute w-96 h-96 sm:w-[500px] sm:h-[500px] bg-sky-500/20 rounded-full blur-3xl -z-10 mix-blend-screen animate-pulse"></div>
+                    <div class="absolute w-96 h-96 sm:w-[500px] sm:h-[500px] bg-indigo-500/20 rounded-full blur-3xl -z-10 mix-blend-screen translate-x-12 translate-y-12"></div>
+                    
+                    <div class="relative w-full max-w-[420px] lg:max-w-[460px] mx-auto">
+                        <div class="aspect-square rounded-full glass-panel p-2 transform transition-transform hover:scale-105 duration-700 shadow-2xl relative overflow-hidden group glow-on-hover">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-sky-500/10 to-transparent z-10 rounded-full pointer-events-none"></div>
+                            <img src="https://iili.io/CZevnt9.jpg" alt="Muhammad Idris" class="w-full h-full object-cover object-[center_20%] rounded-full transition-all duration-700">
+                        </div>
+                    </div>
+
+                    <!-- Quote Block directly underneath the profile picture -->
+                    <div class="w-full max-w-[450px] mt-6 glass-panel p-4 rounded-2xl border border-sky-500/20 bg-slate-900/60 shadow-lg text-center relative group">
+                        <div class="flex items-center justify-between mb-2 px-2 border-b border-white/5 pb-2">
+                            <span class="text-xs text-sky-400 font-mono flex items-center gap-1">
+                                <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span> Personal Thought
+                            </span>
+                            <button onclick="nextQuote(); playClickSound();" title="Refresh Mindset" class="text-slate-400 hover:text-sky-300 transition-colors p-1 rounded-full hover:bg-white/10 btn-click">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <p id="profile-quote-text" class="text-slate-200 italic text-sm leading-relaxed px-2 font-light transition-opacity duration-300">
+                            "Yang Membuat Manusia Beradab Adalah Posisinya di Atas Dirinya Sendiri"
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <section id="skills" class="slide-section flex flex-col justify-center w-full py-20 bg-slate-900/50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Minat & <span class="text-sky-400">Fokus</span></h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-sky-400 to-indigo-500 mx-auto rounded-full"></div>
+                <p class="mt-4 text-slate-400 max-w-2xl mx-auto">Pilar utama yang sedang saya bangun dan kembangkan saat ini. Menggabungkan kreativitas, logika, dan analisis.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Skill 1: Novelist -->
+                <div class="glass-panel p-8 rounded-2xl hover:bg-white/5 transition-all duration-300 group border-t-2 border-t-transparent hover:border-t-purple-400 reveal delay-100 card-lift btn-click" onclick="playClickSound()">
+                    <div class="w-14 h-14 bg-purple-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.331.477-4.5 1.253" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Penulis Novel</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Hobi merangkai kata dan membangun dunia imajinasi melalui tulisan. Menulis novel melatih kreativitas dan kemampuan saya dalam menyusun alur cerita yang kompleks.
+                    </p>
+                </div>
+
+                <!-- Skill 2: Python Programmer -->
+                <div class="glass-panel p-8 rounded-2xl hover:bg-white/5 transition-all duration-300 group border-t-2 border-t-transparent hover:border-t-yellow-400 reveal delay-200 card-lift btn-click" onclick="playClickSound()">
+                    <div class="w-14 h-14 bg-yellow-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-7 w-7 fill-yellow-400">
+                            <path d="M11.968 1.956a10.978 10.978 0 00-5.32 1.378 11.025 11.025 0 00-3.9 3.934c-.812 1.488-1.24 3.195-1.24 4.968v.032c0 1.77.428 3.473 1.238 4.957a11.012 11.012 0 003.9 3.922c1.488.81 3.195 1.237 4.968 1.237h.032c1.77 0 3.473-.427 4.957-1.237a11.008 11.008 0 003.922-3.922c.81-1.484 1.237-3.187 1.237-4.957v-.032c0-1.773-.427-3.48-1.237-4.968a11.025 11.025 0 00-3.922-3.934c-1.484-.81-3.187-1.237-4.957-1.237h-.032z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Programmer (Python)</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Mempelajari dasar-dasar pemrograman dengan Python. Tertarik pada bagaimana logika kode dapat menyelesaikan masalah dan menciptakan sesuatu yang interaktif dari nol.
+                    </p>
+                </div>
+
+                <!-- Skill 3: Mathematics -->
+                <div class="glass-panel p-8 rounded-2xl hover:bg-white/5 transition-all duration-300 group border-t-2 border-t-transparent hover:border-t-emerald-400 reveal delay-300 card-lift btn-click" onclick="playClickSound()">
+                    <div class="w-14 h-14 bg-emerald-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-400">
+                            <path d="M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 1 0 0-8c-2 0-4 1.33-6 4Z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Matematika & Logika</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Sangat menyukai pemecahan masalah (problem-solving) dan perhitungan matematis yang menantang. Logika matematika membantu saya berpikir kritis dan sangat berguna saat merancang algoritma.
+                    </p>
+                </div>
+
+                <!-- Skill 4: Speedtyping -->
+                <div class="glass-panel p-8 rounded-2xl hover:bg-white/5 transition-all duration-300 group border-t-2 border-t-transparent hover:border-t-sky-400 reveal delay-400 card-lift btn-click" onclick="playClickSound()">
+                    <div class="w-14 h-14 bg-sky-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Speedtypist</h3>
+                    <div class="mb-3 flex items-center gap-2">
+                        <span class="px-2 py-1 bg-sky-500/20 text-sky-400 text-xs rounded-md font-bold">10FastFingers</span>
+                        <span class="text-sm font-semibold">96 WPM</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Melatih kelincahan jari di keyboard. Dengan rekor 96 Kata Per Menit (WPM), kecepatan ini sangat membantu dalam menulis novel dan ngoding secara efisien.
+                    </p>
+                    
+                    <div class="mt-4">
+                        <div class="flex justify-between text-xs text-slate-400 mb-1">
+                            <span>Current: 96 WPM</span>
+                            <span>Goal: 120 WPM</span>
+                        </div>
+                        <div class="w-full bg-slate-700 rounded-full h-1.5 overflow-hidden">
+                            <div class="bg-gradient-to-r from-sky-400 to-cyan-400 h-1.5 rounded-full animate-pulse" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="slide-section flex flex-col justify-center w-full py-20 relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 reveal">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-3">Target & <span class="text-sky-400">Karya Utama</span></h2>
+                    <div class="w-20 h-1 bg-gradient-to-r from-sky-400 to-indigo-500 rounded-full"></div>
+                </div>
+                <p class="text-slate-400 text-sm mt-3 md:mt-0 max-w-md">Kumpulan draf naskah cerita, eksperimen koding Python, dan proyek yang sedang dikembangkan.</p>
+            </div>
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Project Card 1: Visual Novel (Projects Hana'Ame) -->
+                <div class="glass-panel rounded-2xl overflow-hidden group reveal delay-100 card-lift btn-click" onclick="playClickSound()">
+                    <div class="h-48 bg-slate-800 relative overflow-hidden flex items-center justify-center">
+                        <div class="absolute inset-0 bg-gradient-to-br from-pink-500/20 to-purple-500/20"></div>
+                        <div class="absolute inset-0 opacity-30">
+                            <div class="absolute top-4 left-10 w-2 h-3 bg-pink-300 rounded-full rotate-45"></div>
+                            <div class="absolute top-12 left-1/3 w-3 h-4 bg-pink-400 rounded-full rotate-12"></div>
+                            <div class="absolute bottom-8 right-1/4 w-2 h-3 bg-pink-200 rounded-full -rotate-12"></div>
+                            <div class="absolute top-1/2 right-10 w-3 h-3 bg-pink-300 rounded-full rotate-45"></div>
+                        </div>
+                        
+                        <div class="z-10 bg-slate-900/80 p-3 rounded-full border border-pink-500/30 flex items-center gap-2 backdrop-blur-sm">
+                           <span class="text-pink-400 font-bold text-xl">Ren'</span><span class="text-white font-bold text-xl">Py</span>
+                        </div>
+                        
+                        <div class="absolute bottom-4 left-4">
+                            <span class="px-3 py-1 bg-pink-500/30 text-pink-300 text-xs rounded-full font-medium backdrop-blur-md">Game Development</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-white group-hover:text-pink-400 transition-colors">Projects Hana'Ame</h3>
+                        <p class="text-slate-400 text-sm mb-3">
+                            <span class="font-semibold text-slate-300">Premis:</span> "Seorang siswa prodigy (jenius) mencoba beradaptasi dan menemukan tempatnya di sebuah sekolah elit yang penuh tantangan."
+                        </p>
+                        <p class="text-slate-400 text-sm mb-4">
+                            Dikembangkan menggunakan engine Ren'Py. Game ini menyajikan cerita dengan narasi multi-perspektif, di mana pemain dapat melihat alur cerita dari berbagai sudut pandang karakter yang berbeda.
+                        </p>
+                        
+                        <!-- Progress bar Projects Hana'Ame 8% -->
+                        <div class="mt-4 pt-4 border-t border-white/10">
+                            <div class="flex justify-between text-xs text-slate-300 mb-1.5 font-medium">
+                                <span>Projects Hana'Ame Progress</span>
+                                <span class="text-pink-400 font-bold">8%</span>
+                            </div>
+                            <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden border border-white/5">
+                                <div class="bg-gradient-to-r from-pink-500 to-purple-500 h-2 rounded-full transition-all duration-1000" style="width: 8%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4 flex flex-wrap items-center gap-2 text-xs">
+                            <span class="text-slate-500 font-medium px-2 py-1 bg-slate-800 rounded">Solo Developer</span>
+                            <span class="text-slate-500 font-medium px-2 py-1 bg-slate-800 rounded">Multi-POV</span>
+                            <span class="text-pink-400 flex items-center gap-1 ml-auto">
+                                <span class="w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span> Dev Active
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Project Card 2 -->
+                    <div class="glass-panel rounded-2xl overflow-hidden group reveal delay-200 card-lift btn-click" onclick="playClickSound()">
+                        <div class="h-24 bg-slate-800 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4">
+                                <span class="px-3 py-1 bg-purple-500/30 text-purple-300 text-xs rounded-full font-medium backdrop-blur-md">Novel Project</span>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="text-lg font-bold mb-2">Menyelesaikan Draf Novel</h3>
+                            <p class="text-slate-400 text-sm">Sedang dalam proses merangkai cerita. Target menyelesaikannya dalam waktu dekat.</p>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 3 -->
+                    <div class="glass-panel rounded-2xl overflow-hidden group reveal delay-300 card-lift btn-click" onclick="playClickSound()">
+                        <div class="h-24 bg-slate-800 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/20 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4">
+                                <span class="px-3 py-1 bg-yellow-500/30 text-yellow-300 text-xs rounded-full font-medium backdrop-blur-md">Python Script</span>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="text-lg font-bold mb-2">Program Python Sederhana</h3>
+                            <p class="text-slate-400 text-sm">Mempraktikkan logika pemrograman dengan membuat skrip otomasi kecil.</p>
+                        </div>
+                    </div>
+                </div>
+          
+                       
+            
+        </div>
+    </section>
+
+    <section id="music" class="slide-section flex flex-col justify-center w-full py-20 bg-slate-950/60 relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 reveal">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold mb-3">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.02 8.52-.6 11.64 1.32.42.18.48.66.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141 C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.18-1.2-.18-1.38-.72-.18-.6.18-1.2.72-1.38 4.26-1.26 11.28-1.02 15.721 1.62.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                        </svg>
+                        Spotify / Audio Player
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold">Top 5 <span class="text-emerald-400">Favorite Tracks</span></h2>
+                    <div class="w-20 h-1 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full mt-2"></div>
+                </div>
+                <p class="text-slate-400 text-sm mt-3 md:mt-0 max-w-sm">Musik yang menemani saat menulis draf novel, ngoding Python, dan mengasah logika.</p>
+            </div>
+
+            <!-- Player Container -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <!-- Active Track Card -->
+                <div class="lg:col-span-5 glass-panel p-6 rounded-3xl border border-emerald-500/20 bg-gradient-to-b from-slate-900/90 to-emerald-950/40 shadow-2xl reveal delay-100">
+                    <div class="relative aspect-square w-full rounded-2xl overflow-hidden mb-6 group shadow-xl border border-white/10">
+                        <img id="player-cover" src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80" alt="Album Cover" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                        <div class="absolute top-4 right-4 bg-emerald-500 text-slate-950 font-extrabold text-xs px-3 py-1 rounded-full shadow-md flex items-center gap-1">
+                            <span class="w-2 h-2 rounded-full bg-slate-950 animate-ping"></span>
+                            RANK #<span id="player-rank">1</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h3 id="player-title" class="text-2xl font-bold text-white tracking-wide">Impostor Syndrome</h3>
+                                <p id="player-artist" class="text-slate-400 font-medium text-sm">Sydney Gish</p>
+                            </div>
+                            <button id="player-fav-btn" onclick="toggleFavorite(); playClickSound();" class="text-pink-500 hover:scale-110 transition-transform btn-click">
+                                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- Equalizer Animation Simulation -->
+                        <div class="flex items-end gap-1 h-6 my-4 px-2">
+                            <span class="w-1 bg-emerald-400 rounded-full animate-[bounce_1s_infinite_100ms] h-full"></span>
+                            <span class="w-1 bg-emerald-400 rounded-full animate-[bounce_1s_infinite_300ms] h-3/4"></span>
+                            <span class="w-1 bg-emerald-400 rounded-full animate-[bounce_1s_infinite_200ms] h-1/2"></span>
+                            <span class="w-1 bg-emerald-400 rounded-full animate-[bounce_1s_infinite_400ms] h-full"></span>
+                            <span class="w-1 bg-emerald-400 rounded-full animate-[bounce_1s_infinite_150ms] h-2/3"></span>
+                            <span class="text-xs text-slate-400 font-mono ml-auto">Visualizer Active</span>
+                        </div>
+
+                        <!-- Progress Slider -->
+                        <div class="w-full bg-slate-800 rounded-full h-1.5 mb-2 overflow-hidden">
+                            <div id="player-progress" class="bg-emerald-400 h-1.5 rounded-full w-2/5 transition-all duration-300"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-slate-400 font-mono mb-6">
+                            <span>1:24</span>
+                            <span id="player-duration">3:15</span>
+                        </div>
+
+                        <!-- Player Controls -->
+                        <div class="flex items-center justify-center gap-6">
+                            <button onclick="prevTrack(); playClickSound();" class="text-slate-400 hover:text-white transition-colors btn-click">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+                            </button>
+                            <button id="play-pause-btn" onclick="togglePlay(); playClickSound();" class="w-12 h-12 rounded-full bg-emerald-400 text-slate-950 flex items-center justify-center hover:scale-105 transition-all shadow-[0_0_15px_rgba(52,211,153,0.5)] btn-click">
+                                <svg id="play-icon" class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            </button>
+                            <button onclick="nextTrack(); playClickSound();" class="text-slate-400 hover:text-white transition-colors btn-click">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Playlist Track Items List -->
+                <div class="lg:col-span-7 space-y-3 reveal delay-200">
+                    <div class="flex items-center justify-between text-xs text-slate-400 font-semibold uppercase px-4 pb-2 border-b border-white/10">
+                        <span># Title & Artist</span>
+                        <span>Genre</span>
+                    </div>
+
+                    <!-- Song 1 -->
+                    <div onclick="selectTrack(0); playClickSound();" id="track-item-0" class="track-card glass-panel p-3.5 rounded-2xl flex items-center justify-between cursor-pointer hover:bg-white/10 transition-all border border-emerald-500/40 bg-emerald-950/20">
+                        <div class="flex items-center gap-4">
+                            <span class="w-6 text-center font-bold text-emerald-400 font-mono">1</span>
+                            <div class="w-12 h-12 rounded-xl overflow-hidden relative flex-shrink-0">
+                                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=200&q=80" alt="Sydney Gish" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">Impostor Syndrome</h4>
+                                <p class="text-slate-400 text-xs">Sydney Gish</p>
+                            </div>
+                        </div>
+                        <span class="px-2.5 py-1 bg-white/5 text-slate-300 text-xs rounded-full border border-white/10">Indie Pop</span>
+                    </div>
+
+                    <!-- Song 2 -->
+                    <div onclick="selectTrack(1); playClickSound();" id="track-item-1" class="track-card glass-panel p-3.5 rounded-2xl flex items-center justify-between cursor-pointer hover:bg-white/10 transition-all border border-white/5">
+                        <div class="flex items-center gap-4">
+                            <span class="w-6 text-center font-bold text-slate-400 font-mono">2</span>
+                            <div class="w-12 h-12 rounded-xl overflow-hidden relative flex-shrink-0">
+                                <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=200&q=80" alt="Tulus" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">Teh Hijau</h4>
+                                <p class="text-slate-400 text-xs">Tulus</p>
+                            </div>
+                        </div>
+                        <span class="px-2.5 py-1 bg-white/5 text-slate-300 text-xs rounded-full border border-white/10">Indo Pop / Jazz</span>
+                    </div>
+
+                    <!-- Song 3 -->
+                    <div onclick="selectTrack(2); playClickSound();" id="track-item-2" class="track-card glass-panel p-3.5 rounded-2xl flex items-center justify-between cursor-pointer hover:bg-white/10 transition-all border border-white/5">
+                        <div class="flex items-center gap-4">
+                            <span class="w-6 text-center font-bold text-slate-400 font-mono">3</span>
+                            <div class="w-12 h-12 rounded-xl overflow-hidden relative flex-shrink-0">
+                                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=200&q=80" alt="Sheila On 7" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">Dan...</h4>
+                                <p class="text-slate-400 text-xs">Sheila On 7</p>
+                            </div>
+                        </div>
+                        <span class="px-2.5 py-1 bg-white/5 text-slate-300 text-xs rounded-full border border-white/10">Classic Rock/Pop</span>
+                    </div>
+
+                    <!-- Song 4 -->
+                    <div onclick="selectTrack(3); playClickSound();" id="track-item-3" class="track-card glass-panel p-3.5 rounded-2xl flex items-center justify-between cursor-pointer hover:bg-white/10 transition-all border border-white/5">
+                        <div class="flex items-center gap-4">
+                            <span class="w-6 text-center font-bold text-slate-400 font-mono">4</span>
+                            <div class="w-12 h-12 rounded-xl overflow-hidden relative flex-shrink-0">
+                                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=200&q=80" alt="Good Kid" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">Wall</h4>
+                                <p class="text-slate-400 text-xs">Good Kid</p>
+                            </div>
+                        </div>
+                        <span class="px-2.5 py-1 bg-white/5 text-slate-300 text-xs rounded-full border border-white/10">Indie Rock</span>
+                    </div>
+
+                    <!-- Song 5 -->
+                    <div onclick="selectTrack(4); playClickSound();" id="track-item-4" class="track-card glass-panel p-3.5 rounded-2xl flex items-center justify-between cursor-pointer hover:bg-white/10 transition-all border border-white/5">
+                        <div class="flex items-center gap-4">
+                            <span class="w-6 text-center font-bold text-slate-400 font-mono">5</span>
+                            <div class="w-12 h-12 rounded-xl overflow-hidden relative flex-shrink-0">
+                                <img src="https://images.unsplash.com/photo-1507838153414-b4b713384a76?auto=format&fit=crop&w=200&q=80" alt="Mosawo" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">恋色 <span class="text-slate-400 text-xs font-normal">(Koiiro)</span></h4>
+                                <p class="text-slate-400 text-xs">もさを。 (Mosawo)</p>
+                            </div>
+                        </div>
+                        <span class="px-2.5 py-1 bg-white/5 text-slate-300 text-xs rounded-full border border-white/10">J-Pop / Acoustic</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="slide-section flex flex-col justify-center w-full py-20 bg-slate-900/40 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-3">Pertanyaan <span class="text-sky-400">Umum (FAQ)</span></h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-sky-400 to-indigo-500 mx-auto rounded-full mb-4"></div>
+                <p class="text-slate-400 text-sm">Beberapa hal yang sering ditanyakan mengenai kesibukan, novel, dan koding.</p>
+            </div>
+
+            <div class="space-y-4 reveal delay-100">
+                <!-- FAQ Item 1 -->
+                <div class="glass-panel rounded-2xl overflow-hidden border border-white/10 transition-all">
+                    <button onclick="toggleFaq(1); playClickSound();" class="w-full p-5 text-left flex justify-between items-center font-semibold text-white hover:text-sky-300 transition-colors btn-click">
+                        <span>Apa premis cerita novel yang sedang kamu tulis?</span>
+                        <svg id="faq-icon-1" class="w-5 h-5 transform transition-transform duration-300 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div id="faq-ans-1" class="hidden px-5 pb-5 text-slate-400 text-sm leading-relaxed border-t border-white/5 pt-3">
+                        Novel dan Visual Novel yang sedang saya kembangkan (Projects Hana'Ame) menceritakan seorang siswa prodigy (jenius) yang mencoba beradaptasi di sekolah elit penuh dinamika persaingan, dengan penyampaian cerita dari multi-perspektif (Multi-POV).
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="glass-panel rounded-2xl overflow-hidden border border-white/10 transition-all">
+                    <button onclick="toggleFaq(2); playClickSound();" class="w-full p-5 text-left flex justify-between items-center font-semibold text-white hover:text-sky-300 transition-colors btn-click">
+                        <span>Mengapa memilih mempelajari bahasa Python?</span>
+                        <svg id="faq-icon-2" class="w-5 h-5 transform transition-transform duration-300 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div id="faq-ans-2" class="hidden px-5 pb-5 text-slate-400 text-sm leading-relaxed border-t border-white/5 pt-3">
+                        Python memiliki sintaks yang sangat jernih dan logis, sangat cocok untuk mengasah pola pikir pemecahan masalah (problem-solving), membuat skrip logika visual novel di Ren'Py, serta proyek otomasi sederhana.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="glass-panel rounded-2xl overflow-hidden border border-white/10 transition-all">
+                    <button onclick="toggleFaq(3); playClickSound();" class="w-full p-5 text-left flex justify-between items-center font-semibold text-white hover:text-sky-300 transition-colors btn-click">
+                        <span>Bagaimana cara mengasah kecepatan mengetik hingga 96 WPM?</span>
+                        <svg id="faq-icon-3" class="w-5 h-5 transform transition-transform duration-300 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div id="faq-ans-3" class="hidden px-5 pb-5 text-slate-400 text-sm leading-relaxed border-t border-white/5 pt-3">
+                        Rahasianya adalah konsistensi mengetik naskah cerpen/novel harian dan rutin berlatih di 10FastFingers menggunakan teknik 10 jari tanpa melihat keyboard. Target berikutnya adalah melampaui 120 WPM!
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="glass-panel rounded-2xl overflow-hidden border border-white/10 transition-all">
+                    <button onclick="toggleFaq(4); playClickSound();" class="w-full p-5 text-left flex justify-between items-center font-semibold text-white hover:text-sky-300 transition-colors btn-click">
+                        <span>Apakah terbuka untuk diskusi atau kolaborasi karya?</span>
+                        <svg id="faq-icon-4" class="w-5 h-5 transform transition-transform duration-300 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div id="faq-ans-4" class="hidden px-5 pb-5 text-slate-400 text-sm leading-relaxed border-t border-white/5 pt-3">
+                        Tentu! Saya sangat menyukai diskusi mengenai literasi novel, logika matematika, pengembangan game visual novel, maupun koding. Kamu bisa menghubungi via WhatsApp atau Email di bagian Kontak.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="feedback" class="slide-section flex flex-col justify-center w-full py-20 relative">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="glass-panel p-8 sm:p-10 rounded-3xl border border-sky-500/20 bg-slate-900/80 shadow-2xl reveal">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-white mb-2">Beri Masukan & <span class="text-sky-400">Feedback</span></h2>
+                    <p class="text-slate-400 text-sm">Pendapatmu sangat berharga untuk pengembangan karya novel & proyek saya ke depan!</p>
+                </div>
+
+                <form onsubmit="handleFeedbackSubmit(event)" class="space-y-6">
+                    <!-- Rating Stars -->
+                    <div class="flex flex-col items-center gap-2">
+                        <label class="text-xs text-slate-300 font-semibold tracking-wider uppercase">Rating Portofolio / Karya</label>
+                        <div class="flex items-center gap-2 text-2xl text-slate-600" id="star-container">
+                            <button type="button" onclick="setRating(1); playClickSound();" class="star-btn transition-colors hover:text-yellow-400 focus:outline-none">★</button>
+                            <button type="button" onclick="setRating(2); playClickSound();" class="star-btn transition-colors hover:text-yellow-400 focus:outline-none">★</button>
+                            <button type="button" onclick="setRating(3); playClickSound();" class="star-btn transition-colors hover:text-yellow-400 focus:outline-none">★</button>
+                            <button type="button" onclick="setRating(4); playClickSound();" class="star-btn transition-colors hover:text-yellow-400 focus:outline-none">★</button>
+                            <button type="button" onclick="setRating(5); playClickSound();" class="star-btn transition-colors hover:text-yellow-400 focus:outline-none">★</button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1 font-medium">Nama Kamu</label>
+                            <input type="text" id="feedback-name" required placeholder="Contoh: Teman 9A" class="w-full px-4 py-2.5 rounded-xl bg-slate-800/80 border border-white/10 text-white focus:outline-none focus:border-sky-400 text-sm transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1 font-medium">Email / Kontak (Opsional)</label>
+                            <input type="text" id="feedback-contact" placeholder="Email / WA" class="w-full px-4 py-2.5 rounded-xl bg-slate-800/80 border border-white/10 text-white focus:outline-none focus:border-sky-400 text-sm transition-colors">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1 font-medium">Pesan / Saran</label>
+                        <textarea id="feedback-message" rows="4" required placeholder="Tuliskan kesan, saran cerita, atau masukan kamu..." class="w-full px-4 py-2.5 rounded-xl bg-slate-800/80 border border-white/10 text-white focus:outline-none focus:border-sky-400 text-sm transition-colors resize-none"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-500 hover:from-sky-400 hover:to-indigo-400 text-white font-bold transition-all shadow-[0_0_20px_rgba(56,189,248,0.4)] btn-click flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+                        Kirim Feedback
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="slide-section flex items-center min-h-[20vh] glass-panel border-t border-white/10 bg-slate-900/80">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col md:flex-row justify-between items-center gap-4 reveal">
+            <div class="text-slate-400 text-sm">
+                &copy; 2026 Muhammad Idris. SMPN 24 Depok.
+            </div>
+            <div class="flex items-center gap-2 text-sm text-slate-500">
+                Dibuat dengan <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-red-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 11-5.656-5.656l1.172 1.171L3.172 5.172z" clip-rule="evenodd" /></svg>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Contact Modal -->
+    <div id="contact-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-slate-950/75 backdrop-blur-sm transition-opacity" onclick="closeContactModal()"></div>
+        
+        <!-- Modal Content -->
+        <div id="contact-modal-content" class="relative modal-solid p-6 sm:p-8 rounded-2xl z-10 w-[90%] max-w-sm transform scale-95 opacity-0 transition-all duration-300 shadow-2xl border border-white/20">
+            
+            <div class="flex justify-between items-center mb-6 relative">
+                <h3 class="text-lg sm:text-xl font-bold text-white">Pilih Media Kontak</h3>
+                <button onclick="closeContactModal(); playClickSound();" class="text-slate-400 hover:text-white transition-colors bg-white/5 hover:bg-white/10 p-2 rounded-full relative z-20 btn-click">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="space-y-3 relative z-20">
+                <!-- WhatsApp Option -->
+                <a href="https://wa.me/6285716318652" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-3.5 rounded-xl bg-white/5 hover:bg-green-500/20 border border-white/10 hover:border-green-500/30 transition-all group btn-click" onclick="playClickSound()">
+                    <div class="w-11 h-11 bg-green-500/20 rounded-xl flex items-center justify-center group-hover:bg-green-500/30 transition-colors flex-shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-green-400 drop-shadow-[0_0_8px_rgba(74,222,128,0.5)]" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.88-.785-1.474-1.754-1.647-2.051-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.173.198-.297.298-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.015-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="text-white font-bold text-base">WhatsApp</div>
+                        <div class="text-slate-400 text-xs">Mari bertukar pesan secara langsung</div>
+                    </div>
+                </a>
+
+                <!-- Email Option -->
+                <a href="mailto:muhammad.idris16286@smp.belajar.id?subject=Pesan%20dari%20Pengunjung%20Website%20Portfolio" class="flex items-center gap-4 p-3.5 rounded-xl bg-white/5 hover:bg-sky-500/20 border border-white/10 hover:border-sky-500/30 transition-all group btn-click" onclick="playClickSound()">
+                    <div class="w-11 h-11 bg-sky-500/20 rounded-xl flex items-center justify-center group-hover:bg-sky-500/30 transition-colors flex-shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-sky-400 drop-shadow-[0_0_8px_rgba(56,189,248,0.5)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="text-white font-bold text-base">Email</div>
+                        <div class="text-sky-300 font-mono text-xs">muhammad.idris16286@smp.belajar.id</div>
+                    </div>
+                </a>
+
+                <!-- Secret Wattpad Button -->
+                <button onclick="showSecretToast(); playClickSound();" class="w-full flex items-center gap-4 p-3.5 rounded-xl bg-white/5 hover:bg-orange-500/20 border border-white/10 hover:border-orange-500/30 transition-all group btn-click text-left">
+                    <div class="w-11 h-11 bg-orange-500/20 rounded-xl flex items-center justify-center group-hover:bg-orange-500/30 transition-colors flex-shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-orange-400 drop-shadow-[0_0_8px_rgba(251,146,60,0.5)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.331.477-4.5 1.253" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="text-white font-bold text-base">Wattpad / Karya Novel</div>
+                        <div class="text-slate-400 text-xs">Klik untuk melihat platform novel</div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Toast Notification -->
+    <div id="secret-toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 z-[60] hidden transition-all duration-300 transform translate-y-4 opacity-0 pointer-events-none">
+        <div class="glass-panel bg-slate-900/95 text-white px-6 py-3 rounded-full border border-orange-500/50 shadow-[0_0_25px_rgba(251,146,60,0.4)] flex items-center gap-3 backdrop-blur-md">
+            <span class="text-xl animate-bounce">🤫</span>
+            <span class="font-bold text-orange-300 tracking-wide text-sm sm:text-base">Rahasiaaa~ hehee</span>
+        </div>
+    </div>
+
+    <script>
+        // Personal Quotes Cycle
+        const profileQuotes = [
+            "Yang Membuat Manusia Beradab Adalah Posisinya di Atas Dirinya Sendiri",
+            "Kata-kata disusun dengan imajinasi, sedangkan logika dijalankan dengan kepastian.",
+            "Kecepatan jemari di atas keyboard adalah jembatan tercepat dari gagasan menuju kenyataan.",
+            "Tantangan terbesar matematika bukan pada angka, tetapi pada cara pandang kita terhadap masalah."
+        ];
+        let quoteIndex = 0;
+
+        function nextQuote() {
+            quoteIndex = (quoteIndex + 1) % profileQuotes.length;
+            const el = document.getElementById('profile-quote-text');
+            if (el) {
+                el.style.opacity = '0';
+                setTimeout(() => {
+                    el.innerText = `"${profileQuotes[quoteIndex]}"`;
+                    el.style.opacity = '1';
+                }, 200);
+            }
+        }
+
+        // Spotify Track List Data
+        const tracks = [
+            {
+                rank: 1,
+                title: "Impostor Syndrome",
+                artist: "Sydney Gish",
+                genre: "Indie Pop",
+                duration: "3:15",
+                cover: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                rank: 2,
+                title: "Teh Hijau",
+                artist: "Tulus",
+                genre: "Indo Pop / Jazz",
+                duration: "3:42",
+                cover: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                rank: 3,
+                title: "Dan...",
+                artist: "Sheila On 7",
+                genre: "Classic Rock/Pop",
+                duration: "4:46",
+                cover: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                rank: 4,
+                title: "Wall",
+                artist: "Good Kid",
+                genre: "Indie Rock",
+                duration: "3:08",
+                cover: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                rank: 5,
+                title: "恋色 (Koiiro)",
+                artist: "もさを。 (Mosawo)",
+                genre: "J-Pop / Acoustic",
+                duration: "4:12",
+                cover: "https://images.unsplash.com/photo-1507838153414-b4b713384a76?auto=format&fit=crop&w=600&q=80"
+            }
+        ];
+
+        let currentTrack = 0;
+        let isPlaying = false;
+
+        function selectTrack(index) {
+            currentTrack = index;
+            const track = tracks[index];
+
+            document.getElementById('player-title').innerText = track.title;
+            document.getElementById('player-artist').innerText = track.artist;
+            document.getElementById('player-rank').innerText = track.rank;
+            document.getElementById('player-duration').innerText = track.duration;
+            document.getElementById('player-cover').src = track.cover;
+
+            for (let i = 0; i < 5; i++) {
+                const item = document.getElementById(`track-item-${i}`);
+                if (item) {
+                    if (i === index) {
+                        item.classList.add('border-emerald-500/40', 'bg-emerald-950/20');
+                        item.classList.remove('border-white/5');
+                    } else {
+                        item.classList.remove('border-emerald-500/40', 'bg-emerald-950/20');
+                        item.classList.add('border-white/5');
+                    }
+                }
+            }
+
+            isPlaying = true;
+            updatePlayState();
+        }
+
+        function togglePlay() {
+            isPlaying = !isPlaying;
+            updatePlayState();
+        }
+
+        function updatePlayState() {
+            const icon = document.getElementById('play-icon');
+            if (!icon) return;
+            if (isPlaying) {
+                icon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+            } else {
+                icon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+            }
+        }
+
+        function nextTrack() {
+            selectTrack((currentTrack + 1) % tracks.length);
+        }
+
+        function prevTrack() {
+            selectTrack((currentTrack - 1 + tracks.length) % tracks.length);
+        }
+
+        function toggleFavorite() {
+            const btn = document.getElementById('player-fav-btn');
+            if (btn) {
+                btn.classList.toggle('text-pink-500');
+                btn.classList.toggle('text-slate-600');
+            }
+        }
+
+        // FAQ Toggle Logic
+        function toggleFaq(index) {
+            const ans = document.getElementById(`faq-ans-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+
+            if (ans && icon) {
+                const isHidden = ans.classList.contains('hidden');
+                
+                for (let i = 1; i <= 4; i++) {
+                    const a = document.getElementById(`faq-ans-${i}`);
+                    const ic = document.getElementById(`faq-icon-${i}`);
+                    if (a) a.classList.add('hidden');
+                    if (ic) ic.classList.remove('rotate-180');
+                }
+
+                if (isHidden) {
+                    ans.classList.remove('hidden');
+                    icon.classList.add('rotate-180');
+                }
+            }
+        }
+
+        // Star Rating System
+        let currentRating = 5;
+        function setRating(rating) {
+            currentRating = rating;
+            const stars = document.querySelectorAll('#star-container .star-btn');
+            stars.forEach((star, idx) => {
+                if (idx < rating) {
+                    star.classList.add('text-yellow-400');
+                    star.classList.remove('text-slate-600');
+                } else {
+                    star.classList.remove('text-yellow-400');
+                    star.classList.add('text-slate-600');
+                }
+            });
+        }
+        setTimeout(() => setRating(5), 100);
+
+        function handleFeedbackSubmit(e) {
+            e.preventDefault();
+            playClickSound();
+
+            const name = document.getElementById('feedback-name').value;
+            const toast = document.getElementById('secret-toast');
+            
+            if (toast) {
+                const toastText = toast.querySelector('span:last-child');
+                if (toastText) toastText.innerText = `Terima kasih atas feedback-nya, ${name}! ✨`;
+                
+                toast.classList.remove('hidden');
+                setTimeout(() => {
+                    toast.classList.remove('translate-y-4', 'opacity-0');
+                    toast.classList.add('translate-y-0', 'opacity-100');
+                }, 10);
+
+                setTimeout(() => {
+                    toast.classList.remove('translate-y-0', 'opacity-100');
+                    toast.classList.add('translate-y-4', 'opacity-0');
+                    setTimeout(() => {
+                        toast.classList.add('hidden');
+                        if (toastText) toastText.innerText = 'Rahasiaaa~ hehee';
+                    }, 300);
+                }, 3000);
+            }
+
+            e.target.reset();
+            setRating(5);
+        }
+
+        // Audio Context click synth sound
+        function playClickSound() {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.value = 800;
+                oscillator.type = 'sine';
+                
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.1);
+            } catch (e) {}
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Typewriter logic
+            const words = ["Penulis Novel.", "Siswa 9A.", "Python Learner.", "Pencinta Logika."];
+            let isDeleting = false;
+            let text = "";
+            let wordIndex = 0;
+
+            function typeWriter() {
+                const currentWord = words[wordIndex];
+                
+                if (isDeleting) {
+                    text = currentWord.substring(0, text.length - 1);
+                } else {
+                    text = currentWord.substring(0, text.length + 1);
+                }
+
+                const el = document.getElementById("typewriter-text");
+                if (el) el.innerHTML = text;
+
+                let typingSpeed = 100;
+
+                if (isDeleting) {
+                    typingSpeed /= 2;
+                }
+
+                if (!isDeleting && text === currentWord) {
+                    typingSpeed = 2000;
+                    isDeleting = true;
+                } else if (isDeleting && text === "") {
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                    typingSpeed = 500; 
+                }
+
+                setTimeout(typeWriter, typingSpeed);
+            }
+            setTimeout(typeWriter, 1000);
+
+            // Mobile menu logic
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+
+            if (btn && menu) {
+                btn.addEventListener('click', () => {
+                    menu.classList.toggle('show');
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!menu.contains(e.target) && !btn.contains(e.target)) {
+                        menu.classList.remove('show');
+                    }
+                });
+            }
+
+            // Reveal Animation Observer
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15 
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach((el) => {
+                observer.observe(el);
+            });
+        });
+
+        // Contact Modal Logic
+        function openContactModal() {
+            const modal = document.getElementById('contact-modal');
+            const content = document.getElementById('contact-modal-content');
+            
+            if (modal && content) {
+                modal.classList.remove('hidden');
+                void modal.offsetWidth; 
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }
+        }
+
+        function closeContactModal() {
+            const modal = document.getElementById('contact-modal');
+            const content = document.getElementById('contact-modal-content');
+            
+            if (modal && content) {
+                content.classList.remove('scale-100', 'opacity-100');
+                content.classList.add('scale-95', 'opacity-0');
+                
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu) menu.classList.remove('show');
+        }
+
+        function showSecretToast() {
+            const toast = document.getElementById('secret-toast');
+            if (!toast) return;
+
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.remove('translate-y-4', 'opacity-0');
+                toast.classList.add('translate-y-0', 'opacity-100');
+            }, 10);
+            
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-4', 'opacity-0');
+                setTimeout(() => {
+                    toast.classList.add('hidden');
+                }, 300);
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
