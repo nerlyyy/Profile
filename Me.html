@@ -462,166 +462,169 @@
     </section>
 
     <section id="music" class="slide-section flex flex-col justify-center w-full py-20 bg-slate-950/60 relative">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 reveal">
-                <div>
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold mb-3">
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.02 8.52-.6 11.64 1.32.42.18.48.66.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141 C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.18-1.2-.18-1.38-.72-.18-.6.18-1.2.72-1.38 4.26-1.26 11.28-1.02 15.721 1.62.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
-                        </svg>
-                        Spotify / Audio Player
-                    </div>
-                    <h2 class="text-3xl md:text-4xl font-bold">Top 5 <span class="text-emerald-400">Favorite Tracks</span></h2>
-                    <div class="w-20 h-1 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full mt-2"></div>
+    <!-- Hidden Audio Tag -->
+    <audio id="audio-player" src="https://www.image2url.com/r2/default/audio/1787817153600-d6cdf65c-607b-4274-b728-0ebde81b06c1.mp3"></audio>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 reveal">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold mb-3">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.02 8.52-.6 11.64 1.32.42.18.48.66.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141 C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.18-1.2-.18-1.38-.72-.18-.6.18-1.2.72-1.38 4.26-1.26 11.28-1.02 15.721 1.62.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                    </svg>
+                    Spotify / Audio Player
                 </div>
-                <p class="text-slate-400 text-sm mt-3 md:mt-0 max-w-sm">Musik yang menemani saat menulis draf novel, ngoding Python, dan mengasah logika.</p>
+                <h2 class="text-3xl md:text-4xl font-bold">Top 5 <span class="text-emerald-400">Favorite Tracks</span></h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full mt-2"></div>
+            </div>
+            <p class="text-slate-400 text-sm mt-3 md:mt-0 max-w-sm">Musik yang menemani saat menulis draf novel, ngoding Python, dan mengasah logika.</p>
+        </div>
+
+        <!-- Player Container -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <!-- Active Track Card -->
+            <div class="lg:col-span-5 glass-panel p-6 rounded-3xl border border-emerald-500/20 bg-gradient-to-b from-slate-900/90 to-emerald-950/40 shadow-2xl reveal delay-100">
+                <div class="relative aspect-square w-full rounded-2xl overflow-hidden mb-6 group shadow-xl border border-white/10">
+                    <img id="player-cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4HaP5u3kvadCcxETqhcNkSIJc1eMyTVbp3qHaUXtkJw&s?auto=format&fit=crop&w=200&q=80" alt="Album Cover" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                    <div class="absolute top-4 right-4 bg-emerald-500 text-slate-950 font-extrabold text-xs px-3 py-1 rounded-full shadow-md flex items-center gap-1">
+                        <span class="w-2 h-2 rounded-full bg-slate-950 animate-ping"></span>
+                        RANK #<span id="player-rank">1</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <h3 id="player-title" class="text-2xl font-bold text-white tracking-wide">Impostor Syndrome</h3>
+                            <p id="player-artist" class="text-slate-400 font-medium text-sm">Sydney Gish</p>
+                        </div>
+                        <button id="player-fav-btn" onclick="toggleFavorite(); playClickSound();" class="text-pink-500 hover:scale-110 transition-transform btn-click">
+                            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Equalizer Visualizer -->
+                    <div class="flex items-end gap-1 h-6 my-4 px-2">
+                        <span class="w-1 bg-emerald-400 rounded-full animate-[bounce_1s_infinite_100ms] h-full"></span>
+                        <span class="w-1 bg-emerald-400 rounded-full animate-[bounce_1s_infinite_300ms] h-3/4"></span>
+                        <span class="w-1 bg-emerald-400 rounded-full animate-[bounce_1s_infinite_200ms] h-1/2"></span>
+                        <span class="w-1 bg-emerald-400 rounded-full animate-[bounce_1s_infinite_400ms] h-full"></span>
+                        <span class="w-1 bg-emerald-400 rounded-full animate-[bounce_1s_infinite_150ms] h-2/3"></span>
+                        <span class="text-xs text-slate-400 font-mono ml-auto">Visualizer Active</span>
+                    </div>
+
+                    <!-- Progress Slider -->
+                    <div class="w-full bg-slate-800 rounded-full h-1.5 mb-2 overflow-hidden cursor-pointer" onclick="seekAudio(event)">
+                        <div id="player-progress" class="bg-emerald-400 h-1.5 rounded-full w-0 transition-all duration-100"></div>
+                    </div>
+                    <div class="flex justify-between text-xs text-slate-400 font-mono mb-6">
+                        <span id="player-current-time">0:00</span>
+                        <span id="player-duration">0:00</span>
+                    </div>
+
+                    <!-- Player Controls -->
+                    <div class="flex items-center justify-center gap-6">
+                        <button onclick="prevTrack(); playClickSound();" class="text-slate-400 hover:text-white transition-colors btn-click">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+                        </button>
+                        <button id="play-pause-btn" onclick="togglePlay(); playClickSound();" class="w-12 h-12 rounded-full bg-emerald-400 text-slate-950 flex items-center justify-center hover:scale-105 transition-all shadow-[0_0_15px_rgba(52,211,153,0.5)] btn-click">
+                            <svg id="play-icon" class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <button onclick="nextTrack(); playClickSound();" class="text-slate-400 hover:text-white transition-colors btn-click">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+                        </button>
+                    </div>
+                </div>
             </div>
 
-            <!-- Player Container -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <!-- Active Track Card -->
-                <div class="lg:col-span-5 glass-panel p-6 rounded-3xl border border-emerald-500/20 bg-gradient-to-b from-slate-900/90 to-emerald-950/40 shadow-2xl reveal delay-100">
-                    <div class="relative aspect-square w-full rounded-2xl overflow-hidden mb-6 group shadow-xl border border-white/10">
-                        <img id="player-cover" src="https://images.genius.com/479cd68d944fae314a7e0b0e5a30d043.1000x1000x1.png?auto=format&fit=crop&w=600&q=80" alt="Album Cover" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                        <div class="absolute top-4 right-4 bg-emerald-500 text-slate-950 font-extrabold text-xs px-3 py-1 rounded-full shadow-md flex items-center gap-1">
-                            <span class="w-2 h-2 rounded-full bg-slate-950 animate-ping"></span>
-                            RANK #<span id="player-rank">1</span>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="flex justify-between items-start mb-2">
-                            <div>
-                                <h3 id="player-title" class="text-2xl font-bold text-white tracking-wide">Impostor Syndrome</h3>
-                                <p id="player-artist" class="text-slate-400 font-medium text-sm">Sydney Gish</p>
-                            </div>
-                            <button id="player-fav-btn" onclick="toggleFavorite(); playClickSound();" class="text-pink-500 hover:scale-110 transition-transform btn-click">
-                                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
-                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                                </svg>
-                            </button>
-                        </div>
-
-                        <!-- Equalizer Animation Simulation -->
-                        <div class="flex items-end gap-1 h-6 my-4 px-2">
-                            <span class="w-1 bg-emerald-400 rounded-full animate-[bounce_1s_infinite_100ms] h-full"></span>
-                            <span class="w-1 bg-emerald-400 rounded-full animate-[bounce_1s_infinite_300ms] h-3/4"></span>
-                            <span class="w-1 bg-emerald-400 rounded-full animate-[bounce_1s_infinite_200ms] h-1/2"></span>
-                            <span class="w-1 bg-emerald-400 rounded-full animate-[bounce_1s_infinite_400ms] h-full"></span>
-                            <span class="w-1 bg-emerald-400 rounded-full animate-[bounce_1s_infinite_150ms] h-2/3"></span>
-                            <span class="text-xs text-slate-400 font-mono ml-auto">Visualizer Active</span>
-                        </div>
-
-                        <!-- Progress Slider -->
-                        <div class="w-full bg-slate-800 rounded-full h-1.5 mb-2 overflow-hidden">
-                            <div id="player-progress" class="bg-emerald-400 h-1.5 rounded-full w-2/5 transition-all duration-300"></div>
-                        </div>
-                        <div class="flex justify-between text-xs text-slate-400 font-mono mb-6">
-                            <span>1:24</span>
-                            <span id="player-duration">3:15</span>
-                        </div>
-
-                        <!-- Player Controls -->
-                        <div class="flex items-center justify-center gap-6">
-                            <button onclick="prevTrack(); playClickSound();" class="text-slate-400 hover:text-white transition-colors btn-click">
-                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
-                            </button>
-                            <button id="play-pause-btn" onclick="togglePlay(); playClickSound();" class="w-12 h-12 rounded-full bg-emerald-400 text-slate-950 flex items-center justify-center hover:scale-105 transition-all shadow-[0_0_15px_rgba(52,211,153,0.5)] btn-click">
-                                <svg id="play-icon" class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                            </button>
-                            <button onclick="nextTrack(); playClickSound();" class="text-slate-400 hover:text-white transition-colors btn-click">
-                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
-                            </button>
-                        </div>
-                    </div>
+            <!-- Playlist Track Items List -->
+            <div class="lg:col-span-7 space-y-3 reveal delay-200">
+                <div class="flex items-center justify-between text-xs text-slate-400 font-semibold uppercase px-4 pb-2 border-b border-white/10">
+                    <span># Title & Artist</span>
+                    <span>Genre</span>
                 </div>
 
-                <!-- Playlist Track Items List -->
-                <div class="lg:col-span-7 space-y-3 reveal delay-200">
-                    <div class="flex items-center justify-between text-xs text-slate-400 font-semibold uppercase px-4 pb-2 border-b border-white/10">
-                        <span># Title & Artist</span>
-                        <span>Genre</span>
-                    </div>
-
-                    <!-- Song 1 -->
-                    <div onclick="selectTrack(0); playClickSound();" id="track-item-0" class="track-card glass-panel p-3.5 rounded-2xl flex items-center justify-between cursor-pointer hover:bg-white/10 transition-all border border-emerald-500/40 bg-emerald-950/20">
-                        <div class="flex items-center gap-4">
-                            <span class="w-6 text-center font-bold text-emerald-400 font-mono">1</span>
-                            <div class="w-12 h-12 rounded-xl overflow-hidden relative flex-shrink-0">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4HaP5u3kvadCcxETqhcNkSIJc1eMyTVbp3qHaUXtkJw&s?auto=format&fit=crop&w=200&q=80" alt="Sydney Gish" class="w-full h-full object-cover">
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-white text-base">Impostor Syndrome</h4>
-                                <p class="text-slate-400 text-xs">Sydney Gish</p>
-                            </div>
+                <!-- Song 1 -->
+                <div onclick="selectTrack(0); playClickSound();" id="track-item-0" class="track-card glass-panel p-3.5 rounded-2xl flex items-center justify-between cursor-pointer hover:bg-white/10 transition-all border border-emerald-500/40 bg-emerald-950/20">
+                    <div class="flex items-center gap-4">
+                        <span class="w-6 text-center font-bold text-emerald-400 font-mono">1</span>
+                        <div class="w-12 h-12 rounded-xl overflow-hidden relative flex-shrink-0">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4HaP5u3kvadCcxETqhcNkSIJc1eMyTVbp3qHaUXtkJw&s?auto=format&fit=crop&w=200&q=80" alt="Sydney Gish" class="w-full h-full object-cover">
                         </div>
-                        <span class="px-2.5 py-1 bg-white/5 text-slate-300 text-xs rounded-full border border-white/10">Indie Pop</span>
-                    </div>
-
-                    <!-- Song 2 -->
-                    <div onclick="selectTrack(1); playClickSound();" id="track-item-1" class="track-card glass-panel p-3.5 rounded-2xl flex items-center justify-between cursor-pointer hover:bg-white/10 transition-all border border-white/5">
-                        <div class="flex items-center gap-4">
-                            <span class="w-6 text-center font-bold text-slate-400 font-mono">2</span>
-                            <div class="w-12 h-12 rounded-xl overflow-hidden relative flex-shrink-0">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2hCHXP-LbIGuE6e63xRNlcgKNbHSsuEkFPnDo5gFkJw&s=10?auto=format&fit=crop&w=200&q=80" alt="Tulus" class="w-full h-full object-cover">
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-white text-base">Teh Hijau</h4>
-                                <p class="text-slate-400 text-xs">Tulus</p>
-                            </div>
+                        <div>
+                            <h4 class="font-bold text-white text-base">Impostor Syndrome</h4>
+                            <p class="text-slate-400 text-xs">Sydney Gish</p>
                         </div>
-                        <span class="px-2.5 py-1 bg-white/5 text-slate-300 text-xs rounded-full border border-white/10">Indo Pop / Jazz</span>
                     </div>
+                    <span class="px-2.5 py-1 bg-white/5 text-slate-300 text-xs rounded-full border border-white/10">Indie Pop</span>
+                </div>
 
-                    <!-- Song 3 -->
-                    <div onclick="selectTrack(2); playClickSound();" id="track-item-2" class="track-card glass-panel p-3.5 rounded-2xl flex items-center justify-between cursor-pointer hover:bg-white/10 transition-all border border-white/5">
-                        <div class="flex items-center gap-4">
-                            <span class="w-6 text-center font-bold text-slate-400 font-mono">3</span>
-                            <div class="w-12 h-12 rounded-xl overflow-hidden relative flex-shrink-0">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-3OXPf3OncCf04g2AWAzyRUTha2FpbO-PvazyXUE2pg&s=10?auto=format&fit=crop&w=200&q=80" alt="Sheila On 7" class="w-full h-full object-cover">
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-white text-base">Dan...</h4>
-                                <p class="text-slate-400 text-xs">Sheila On 7</p>
-                            </div>
+                <!-- Song 2 -->
+                <div onclick="selectTrack(1); playClickSound();" id="track-item-1" class="track-card glass-panel p-3.5 rounded-2xl flex items-center justify-between cursor-pointer hover:bg-white/10 transition-all border border-white/5">
+                    <div class="flex items-center gap-4">
+                        <span class="w-6 text-center font-bold text-slate-400 font-mono">2</span>
+                        <div class="w-12 h-12 rounded-xl overflow-hidden relative flex-shrink-0">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2hCHXP-LbIGuE6e63xRNlcgKNbHSsuEkFPnDo5gFkJw&s=10?auto=format&fit=crop&w=200&q=80" alt="Tulus" class="w-full h-full object-cover">
                         </div>
-                        <span class="px-2.5 py-1 bg-white/5 text-slate-300 text-xs rounded-full border border-white/10">Classic Rock/Pop</span>
+                        <div>
+                            <h4 class="font-bold text-white text-base">Teh Hijau</h4>
+                            <p class="text-slate-400 text-xs">Tulus</p>
+                        </div>
                     </div>
+                    <span class="px-2.5 py-1 bg-white/5 text-slate-300 text-xs rounded-full border border-white/10">Indo Pop / Jazz</span>
+                </div>
 
-                    <!-- Song 4 -->
-                    <div onclick="selectTrack(3); playClickSound();" id="track-item-3" class="track-card glass-panel p-3.5 rounded-2xl flex items-center justify-between cursor-pointer hover:bg-white/10 transition-all border border-white/5">
-                        <div class="flex items-center gap-4">
-                            <span class="w-6 text-center font-bold text-slate-400 font-mono">4</span>
-                            <div class="w-12 h-12 rounded-xl overflow-hidden relative flex-shrink-0">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiazTUUyEdyhgEbc_w0FoxEFC79cgvEhUTdsmZOa6Qow&s=10?auto=format&fit=crop&w=200&q=80" alt="Good Kid" class="w-full h-full object-cover">
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-white text-base">Wall</h4>
-                                <p class="text-slate-400 text-xs">Good Kid</p>
-                            </div>
+                <!-- Song 3 -->
+                <div onclick="selectTrack(2); playClickSound();" id="track-item-2" class="track-card glass-panel p-3.5 rounded-2xl flex items-center justify-between cursor-pointer hover:bg-white/10 transition-all border border-white/5">
+                    <div class="flex items-center gap-4">
+                        <span class="w-6 text-center font-bold text-slate-400 font-mono">3</span>
+                        <div class="w-12 h-12 rounded-xl overflow-hidden relative flex-shrink-0">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-3OXPf3OncCf04g2AWAzyRUTha2FpbO-PvazyXUE2pg&s=10?auto=format&fit=crop&w=200&q=80" alt="Sheila On 7" class="w-full h-full object-cover">
                         </div>
-                        <span class="px-2.5 py-1 bg-white/5 text-slate-300 text-xs rounded-full border border-white/10">Indie Rock</span>
+                        <div>
+                            <h4 class="font-bold text-white text-base">Dan...</h4>
+                            <p class="text-slate-400 text-xs">Sheila On 7</p>
+                        </div>
                     </div>
+                    <span class="px-2.5 py-1 bg-white/5 text-slate-300 text-xs rounded-full border border-white/10">Classic Rock/Pop</span>
+                </div>
 
-                    <!-- Song 5 -->
-                    <div onclick="selectTrack(4); playClickSound();" id="track-item-4" class="track-card glass-panel p-3.5 rounded-2xl flex items-center justify-between cursor-pointer hover:bg-white/10 transition-all border border-white/5">
-                        <div class="flex items-center gap-4">
-                            <span class="w-6 text-center font-bold text-slate-400 font-mono">5</span>
-                            <div class="w-12 h-12 rounded-xl overflow-hidden relative flex-shrink-0">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07zrsYR8s9ES1yn-Ca7AJFnOxGGl7ieNvRoJVyJQn3Q&s=10?auto=format&fit=crop&w=200&q=80" alt="Mosawo" class="w-full h-full object-cover">
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-white text-base">恋色 <span class="text-slate-400 text-xs font-normal">(Koiiro)</span></h4>
-                                <p class="text-slate-400 text-xs">もさを。 (Mosawo)</p>
-                            </div>
+                <!-- Song 4 -->
+                <div onclick="selectTrack(3); playClickSound();" id="track-item-3" class="track-card glass-panel p-3.5 rounded-2xl flex items-center justify-between cursor-pointer hover:bg-white/10 transition-all border border-white/5">
+                    <div class="flex items-center gap-4">
+                        <span class="w-6 text-center font-bold text-slate-400 font-mono">4</span>
+                        <div class="w-12 h-12 rounded-xl overflow-hidden relative flex-shrink-0">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiazTUUyEdyhgEbc_w0FoxEFC79cgvEhUTdsmZOa6Qow&s=10?auto=format&fit=crop&w=200&q=80" alt="Good Kid" class="w-full h-full object-cover">
                         </div>
-                        <span class="px-2.5 py-1 bg-white/5 text-slate-300 text-xs rounded-full border border-white/10">J-Pop / Acoustic</span>
+                        <div>
+                            <h4 class="font-bold text-white text-base">Wall</h4>
+                            <p class="text-slate-400 text-xs">Good Kid</p>
+                        </div>
                     </div>
+                    <span class="px-2.5 py-1 bg-white/5 text-slate-300 text-xs rounded-full border border-white/10">Indie Rock</span>
+                </div>
+
+                <!-- Song 5 -->
+                <div onclick="selectTrack(4); playClickSound();" id="track-item-4" class="track-card glass-panel p-3.5 rounded-2xl flex items-center justify-between cursor-pointer hover:bg-white/10 transition-all border border-white/5">
+                    <div class="flex items-center gap-4">
+                        <span class="w-6 text-center font-bold text-slate-400 font-mono">5</span>
+                        <div class="w-12 h-12 rounded-xl overflow-hidden relative flex-shrink-0">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07zrsYR8s9ES1yn-Ca7AJFnOxGGl7ieNvRoJVyJQn3Q&s=10?auto=format&fit=crop&w=200&q=80" alt="Mosawo" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white text-base">恋色 <span class="text-slate-400 text-xs font-normal">(Koiiro)</span></h4>
+                            <p class="text-slate-400 text-xs">もさを。 (Mosawo)</p>
+                        </div>
+                    </div>
+                    <span class="px-2.5 py-1 bg-white/5 text-slate-300 text-xs rounded-full border border-white/10">J-Pop / Acoustic</span>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <section id="faq" class="slide-section flex flex-col justify-center w-full py-20 bg-slate-900/40 relative">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -834,110 +837,153 @@
             }
         }
 
-        // Spotify Track List Data
-        const tracks = [
-            {
-                rank: 1,
-                title: "Impostor Syndrome",
-                artist: "Sydney Gish",
-                genre: "Indie Pop",
-                duration: "3:15",
-                cover: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80"
-            },
-            {
-                rank: 2,
-                title: "Teh Hijau",
-                artist: "Tulus",
-                genre: "Indo Pop / Jazz",
-                duration: "3:42",
-                cover: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=600&q=80"
-            },
-            {
-                rank: 3,
-                title: "Dan...",
-                artist: "Sheila On 7",
-                genre: "Classic Rock/Pop",
-                duration: "4:46",
-                cover: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=600&q=80"
-            },
-            {
-                rank: 4,
-                title: "Wall",
-                artist: "Good Kid",
-                genre: "Indie Rock",
-                duration: "3:08",
-                cover: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80"
-            },
-            {
-                rank: 5,
-                title: "恋色 (Koiiro)",
-                artist: "もさを。 (Mosawo)",
-                genre: "J-Pop / Acoustic",
-                duration: "4:12",
-                cover: "https://images.unsplash.com/photo-1507838153414-b4b713384a76?auto=format&fit=crop&w=600&q=80"
-            }
-        ];
+      // Spotify Track List Data - URL cover disesuaikan langsung dengan gambar manual yang kamu buat
+const tracks = [
+    {
+        rank: 1,
+        title: "Impostor Syndrome",
+        artist: "Sydney Gish",
+        genre: "Indie Pop",
+        cover: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4HaP5u3kvadCcxETqhcNkSIJc1eMyTVbp3qHaUXtkJw&s?auto=format&fit=crop&w=200&q=80",
+        audioSrc: "https://www.image2url.com/r2/default/audio/1787817153600-d6cdf65c-607b-4274-b728-0ebde81b06c1.mp3" // Ganti dengan URL MP3 kamu
+    },
+    {
+        rank: 2,
+        title: "Teh Hijau",
+        artist: "Tulus",
+        genre: "Indo Pop / Jazz",
+        cover: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2hCHXP-LbIGuE6e63xRNlcgKNbHSsuEkFPnDo5gFkJw&s=10?auto=format&fit=crop&w=200&q=80",
+        audioSrc: "https://www.image2url.com/r2/default/audio/1787816597233-3d2b31ab-7766-477b-999a-b8d7b0cee128.mp3" // Ganti dengan URL MP3 kamu
+    },
+    {
+        rank: 3,
+        title: "Dan...",
+        artist: "Sheila On 7",
+        genre: "Classic Rock/Pop",
+        cover: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-3OXPf3OncCf04g2AWAzyRUTha2FpbO-PvazyXUE2pg&s=10?auto=format&fit=crop&w=200&q=80",
+        audioSrc: "https://www.image2url.com/r2/default/audio/1787817214941-6decc5cb-5996-414b-ab0b-7219690223ce.mp3" // Ganti dengan URL MP3 kamu
+    },
+    {
+        rank: 4,
+        title: "Wall",
+        artist: "Good Kid",
+        genre: "Indie Rock",
+        cover: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiazTUUyEdyhgEbc_w0FoxEFC79cgvEhUTdsmZOa6Qow&s=10?auto=format&fit=crop&w=200&q=80",
+        audioSrc: "https://www.image2url.com/r2/default/audio/1787817441305-852af38e-9a74-4b40-abe3-353a0a316de3.mp3" // Ganti dengan URL MP3 kamu
+    },
+    {
+        rank: 5,
+        title: "恋色 (Koiiro)",
+        artist: "もさを。 (Mosawo)",
+        genre: "J-Pop / Acoustic",
+        cover: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07zrsYR8s9ES1yn-Ca7AJFnOxGGl7ieNvRoJVyJQn3Q&s=10?auto=format&fit=crop&w=200&q=80",
+        audioSrc: "https://www.image2url.com/r2/default/audio/1787817397438-4a2e6720-06f8-4ef2-9f40-4e5747bd414f.mp3" // Ganti dengan URL MP3 kamu
+    }
+];
 
-        let currentTrack = 0;
-        let isPlaying = false;
+let currentTrack = 0;
+let isPlaying = false;
+const audio = document.getElementById('audio-player');
 
-        function selectTrack(index) {
-            currentTrack = index;
-            const track = tracks[index];
+function formatTime(seconds) {
+    if (isNaN(seconds)) return "0:00";
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+}
 
-            document.getElementById('player-title').innerText = track.title;
-            document.getElementById('player-artist').innerText = track.artist;
-            document.getElementById('player-rank').innerText = track.rank;
-            document.getElementById('player-duration').innerText = track.duration;
-            document.getElementById('player-cover').src = track.cover;
+function selectTrack(index) {
+    currentTrack = index;
+    const track = tracks[index];
 
-            for (let i = 0; i < 5; i++) {
-                const item = document.getElementById(`track-item-${i}`);
-                if (item) {
-                    if (i === index) {
-                        item.classList.add('border-emerald-500/40', 'bg-emerald-950/20');
-                        item.classList.remove('border-white/5');
-                    } else {
-                        item.classList.remove('border-emerald-500/40', 'bg-emerald-950/20');
-                        item.classList.add('border-white/5');
-                    }
-                }
-            }
+    // Update UI Player
+    document.getElementById('player-title').innerText = track.title;
+    document.getElementById('player-artist').innerText = track.artist;
+    document.getElementById('player-rank').innerText = track.rank;
+    document.getElementById('player-cover').src = track.cover; // Cover berganti sesuai URL manual
 
+    // Update Sumber Audio & Putar
+    if (audio) {
+        audio.src = track.audioSrc;
+        audio.currentTime = 0;
+        audio.play().then(() => {
             isPlaying = true;
             updatePlayState();
-        }
+        }).catch(err => {
+            console.log("Audio play prevented or source invalid:", err);
+        });
+    }
 
-        function togglePlay() {
-            isPlaying = !isPlaying;
-            updatePlayState();
-        }
-
-        function updatePlayState() {
-            const icon = document.getElementById('play-icon');
-            if (!icon) return;
-            if (isPlaying) {
-                icon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+    // Highlight Playlist
+    for (let i = 0; i < tracks.length; i++) {
+        const item = document.getElementById(`track-item-${i}`);
+        if (item) {
+            if (i === index) {
+                item.classList.add('border-emerald-500/40', 'bg-emerald-950/20');
+                item.classList.remove('border-white/5');
             } else {
-                icon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+                item.classList.remove('border-emerald-500/40', 'bg-emerald-950/20');
+                item.classList.add('border-white/5');
             }
         }
+    }
+}
 
-        function nextTrack() {
-            selectTrack((currentTrack + 1) % tracks.length);
-        }
+function togglePlay() {
+    if (!audio) return;
+    if (isPlaying) {
+        audio.pause();
+        isPlaying = false;
+    } else {
+        audio.play().then(() => {
+            isPlaying = true;
+        }).catch(() => {});
+    }
+    updatePlayState();
+}
 
-        function prevTrack() {
-            selectTrack((currentTrack - 1 + tracks.length) % tracks.length);
-        }
+function updatePlayState() {
+    const icon = document.getElementById('play-icon');
+    if (!icon) return;
+    if (isPlaying) {
+        icon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+    } else {
+        icon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+    }
+}
 
-        function toggleFavorite() {
-            const btn = document.getElementById('player-fav-btn');
-            if (btn) {
-                btn.classList.toggle('text-pink-500');
-                btn.classList.toggle('text-slate-600');
-            }
-        }
+function nextTrack() {
+    selectTrack((currentTrack + 1) % tracks.length);
+}
+
+function prevTrack() {
+    selectTrack((currentTrack - 1 + tracks.length) % tracks.length);
+}
+
+// Event Listener Update Progress Bar Otomatis saat Lagu Berjalan
+if (audio) {
+    audio.addEventListener('timeupdate', () => {
+        const progress = (audio.currentTime / audio.duration) * 100;
+        const progressBar = document.getElementById('player-progress');
+        const currentTimeEl = document.getElementById('player-current-time');
+        const durationEl = document.getElementById('player-duration');
+
+        if (progressBar) progressBar.style.width = `${progress}%`;
+        if (currentTimeEl) currentTimeEl.innerText = formatTime(audio.currentTime);
+        if (durationEl && !isNaN(audio.duration)) durationEl.innerText = formatTime(audio.duration);
+    });
+
+    audio.addEventListener('ended', () => {
+        nextTrack();
+    });
+}
+
+function seekAudio(e) {
+    if (!audio || !audio.duration) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const clickPosition = (e.clientX - rect.left) / rect.width;
+    audio.currentTime = clickPosition * audio.duration;
+}
 
         // FAQ Toggle Logic
         function toggleFaq(index) {
